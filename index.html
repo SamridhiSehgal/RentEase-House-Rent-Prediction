@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rent Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .box { max-width: 400px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        input, select, button { width: 100%; padding: 8px; margin: 8px 0; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        h3 { text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Rent Prediction</h2>
+
+    <label>BHK: <input type="number" id="BHK" value="2"></label>
+    <label>Size (sqft): <input type="number" id="Size" value="850"></label>
+    <label>Floor: <input type="number" id="Floor" value="3"></label>
+    <label>Bathrooms: <input type="number" id="Bathroom" value="2"></label>
+
+    <label>City:
+        <select id="City">
+            <option value="mumbai">Mumbai</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="chennai">Chennai</option>
+            <option value="delhi">Delhi</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="kolkata">Kolkata</option>
+            <option value="other">Other</option>
+        </select>
+    </label>
+
+    <label>Locality:
+        <select id="Locality">
+            <option value="bandra west">Bandra West</option>
+            <option value="andheri west">Andheri West</option>
+            <option value="chembur">Chembur</option>
+            <option value="other">Other</option>
+        </select>
+    </label>
+
+    <label>Area Type:
+        <select id="AreaType">
+            <option value="carpet area">Carpet Area</option>
+            <option value="built area">Built Area</option>
+            <option value="super area">Super Area</option>
+        </select>
+    </label>
+
+    <label>Furnishing:
+        <select id="Furnishing">
+            <option value="furnished">Furnished</option>
+            <option value="semifurnished">Semi-Furnished</option>
+            <option value="unfurnished">Unfurnished</option>
+        </select>
+    </label>
+
+    <button onclick="getRent()">Predict</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+function getRent() {
+    const payload = {
+        BHK: document.getElementById("BHK").value,
+        Size: document.getElementById("Size").value,
+        Floor: document.getElementById("Floor").value,
+        Bathroom: document.getElementById("Bathroom").value,
+        City: document.getElementById("City").value,
+        Locality: document.getElementById("Locality").value,
+        AreaType: document.getElementById("AreaType").value,
+        Furnishing: document.getElementById("Furnishing").value
+    };
+
+    fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.predicted_rent) {
+            document.getElementById("result").innerText = 
+                `Predicted Rent: ₹ ${data.predicted_rent} / month`;
+        } else {
+            document.getElementById("result").innerText = `Error: ${data.error}`;
+        }
+    })
+    .catch(err => {
+        document.getElementById("result").innerText = `Error: ${err}`;
+    });
+}
+</script>
+
+</body>
+</html>
