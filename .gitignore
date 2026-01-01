@@ -2,6 +2,6 @@ __pycache__/
 *.pyc
 .venv/
 myenv/
-*.pkl
+
 *.enc
 Indian_House_Rent_Dataset.csv
