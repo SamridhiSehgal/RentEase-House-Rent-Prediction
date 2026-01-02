@@ -154,5 +154,8 @@ This ensures browser & notebook predictions match ✅
 -Developed as part of RentEase – Cloud-Based House Rental System
 
 
-### Demo
-https://github.com/user-attachments/assets/e842921f-720b-49fc-ad82-9031bb30fd97
+## 🧩 Usage
+![demo](demo.gif)
+
+
+
