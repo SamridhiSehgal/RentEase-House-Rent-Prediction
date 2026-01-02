@@ -152,4 +152,6 @@ This ensures browser & notebook predictions match ✅
 -Inspired by real-world rental challenges
 
 -Developed as part of RentEase – Cloud-Based House Rental System
->>>>>>> 473a17173e22aafa6430d120d88579f5d5a533fc
+
+
+### Demo
