@@ -157,5 +157,8 @@ This ensures browser & notebook predictions match ✅
 ## 🧩 Usage
 ![demo](demo.gif)
 
+## Deploy
+https://rentease-house-rent-prediction-1.onrender.com
+
 
 
