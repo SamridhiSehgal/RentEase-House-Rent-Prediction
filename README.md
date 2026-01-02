@@ -1,73 +1,153 @@
-🏠 RentEase: Indian House Rent Prediction & Deployment
-RentEase is a complete end-to-end Machine Learning project designed to predict house rental prices in major Indian cities. It encompasses data cleaning, predictive modeling using XGBoost, and a web-based deployment interface.
+# 🏠 RentEase — Smart House Rent Prediction System
 
-📁 Project Structure
-Following the repository organization:
+**RentEase** is an intelligent, ML-powered rent prediction system that estimates **monthly house rent** based on property and location details.  
+Built with **Python, Machine Learning, Flask, and a modern HTML/CSS frontend**, RentEase helps users make realistic rental decisions with just a few inputs.
 
-app.py: The core Flask application that handles the web backend and model inference.
+---
 
-house-rent_prediction.ipynb: The Jupyter notebook containing the full data science pipeline, from EDA to model training.
+## 🚀 Features
 
-rentease_final_model_.pkl: The trained and serialized XGBoost regression model.
+### 📊 Accurate Rent Prediction
+- Predicts **monthly rent (₹)** using a trained Machine Learning model  
+- Handles **unseen cities and localities** gracefully  
+- Prevents unrealistic low or extreme rent values  
 
-rentease_final_encoder_.pkl: The saved One-Hot Encoder used to transform categorical inputs.
+### 🧠 Machine Learning Powered
+- Trained on cleaned real-estate rental data  
+- Uses **log-transformed target (`log1p` / `expm1`)** for stability  
+- Encoders ensure consistent predictions across backend and frontend  
 
-templates/: Directory containing HTML files for the web interface.
+### 🌐 Web-Based Interface
+- Simple and clean **HTML + CSS + JavaScript UI**
+- Real-time predictions via Flask backend
+- Same model works in **Jupyter Notebook & Browser**
 
-static/ (via script.js & style.css): Contains frontend logic and styling for the application.
+### ⚙️ Backend API
+- Flask-based REST API
+- Supports JSON-based prediction requests
+- CORS enabled for frontend communication
 
-requirements.txt: List of all Python dependencies required to run the project.
+---
 
-🚀 Features
-High-Accuracy Modeling: Utilizes an XGBoost Regressor tuned to handle complex rental market data.
+## 🧱 Tech Stack
 
-Intelligent Data Preprocessing: Features a custom pipeline that handles missing values, standardized city names via fuzzy matching, and manages price outliers.
+### 🔹 Machine Learning
+- Python  
+- Pandas, NumPy  
+- Scikit-learn  
+- XGBoost  
 
-Interactive Web UI: A clean interface where users can input house details (BHK, Size, Locality, etc.) and receive an instant price estimate.
+### 🔹 Backend
+- Flask  
+- Flask-CORS  
+- Pickle  
 
-Robust Input Handling: The backend includes logic to handle "Other" categories for cities and localities not present in the training set.
+### 🔹 Frontend
+- HTML  
+- CSS  
+- JavaScript  
 
-🛠️ Tech Stack
-Machine Learning: Python, XGBoost, Scikit-Learn, Pandas, NumPy.
+---
 
-Preprocessing: FuzzyWuzzy (Levenshtein distance for text cleaning).
+## 🧠 Input Parameters
 
-Web Framework: Flask.
+The model predicts rent based on:
 
-Frontend: HTML5, CSS3, JavaScript.
+- 📍 City  
+- 🏘️ Locality  
+- 🛏️ BHK  
+- 📐 Size (sq ft)  
+- 🏢 Floor  
+- 🏗️ Total Floors  
+- 🛋️ Furnishing Status  
+- 🚿 Bathrooms  
 
-🔧 Installation & Setup
-Clone the repository:
+---
 
-Bash
+## 📈 Output
 
-git clone https://github.com/SamridhiSehgal/RentEase-ML-deploy.git
-cd RentEase-ML-deploy
-Create a Virtual Environment:
+- ✅ **Predicted Monthly Rent (₹)**
+- Rounded and realistic values
+- Consistent results across:
+  - Jupyter Notebook
+  - Browser UI
+  - API response
 
-Bash
+---
 
-python -m venv .venv
-# Activate on Windows:
-.venv\Scripts\activate
-Install Dependencies:
+## ⚙️ Installation & Setup
 
-Bash
-
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/SamridhiSehgal/RentEase-House-Rent-Prediction
+cd RentEase-Rent-Prediction
+ ```
+### 2️⃣ Create Virtual Environment (Recommended)
+```bash
+python -m venv myenv
+myenv\Scripts\activate
+```
+### Install Dependencies
+```bash
 pip install -r requirements.txt
-Run the Application:
-
-Bash
-
+```
+### ▶️ Running the Project
+```bash
 python app.py
-Access the app at http://127.0.0.1:5000/.
+```
+### ✅ Server starts at:
+```bash
+http://127.0.0.1:5050
+```
+### 🔹 Run the Frontend
+-Serve frontend via Flask static files
 
-📊 Model Performance
-R² Score: ~0.70
+Fill the form → Click Predict Rent → Get instant results 💸
 
-Mean Absolute Error (MAE): ₹10,587.44
+# 📡 Backend API
 
-Target Transformation: Log transformation was used on the rent values to improve model stability and minimize skewness.
+### POST `/install-profile`
 
-📺 Demonstration
-(Optional: Insert a GIF or a link to a video showing the application predicting a rent value based on user input.)![reneaseml](https://github.com/user-attachments/assets/64740610-a8b7-4167-b116-7a09c453772d)
+**Request Body**
+```json
+{
+  "city": "Delhi",
+  "locality": "Rohini",
+  "bhk": 2,
+  "size": 900,
+  "floor": 2,
+  "total_floors": 5,
+  "furnishing": "Semi-Furnished",
+  "bathroom": 2
+}
+```
+**Response**
+```json
+{
+  "predicted_rent": 18500
+}
+```
+
+### 🧪 Jupyter Notebook Testing
+-Load the trained model and encoder
+
+-Apply the same preprocessing logic
+
+-Use np.expm1() to convert predictions back to monthly rent
+
+This ensures browser & notebook predictions match ✅
+### 🎨 UI Highlights
+-Minimal and beginner-friendly layout
+
+-Clear input labels
+
+-Instant prediction output
+
+-Responsive design
+###🙌 Acknowledgements
+
+-Built with ❤️ using Python & Machine Learning
+
+-Inspired by real-world rental challenges
+
+-Developed as part of RentEase – Cloud-Based House Rental System
